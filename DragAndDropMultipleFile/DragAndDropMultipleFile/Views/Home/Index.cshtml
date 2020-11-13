@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+
+    <div id="dropzone">
+
+        <form action="/Home/Upload" class="dropzone" id="myDropzone" style="background-color:aqua">
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts
+ {
+   
+    <script>
+        function myParamName() {
+            return "files";
+        }
+
+        Dropzone.options.myDropzone = {
+            paramName: myParamName, // The name that will be used to transfer the file
+            maxFiles: 5,
+            maxFilesize: 100,
+            uploadMultiple: true,
+            accept: function (file, done) {
+                done()
+            },
+            renameFile: function (file) {
+                let newName = file.fullPath;
+                return newName;
+            },
+            init: function () {
+                this.on("sending", function (file, response, formData) {
+                    
+                });
+                this.on("sendingmultiple", function (file, response, formData) {
+                   
+                });
+                this.on("success", function (file, response) {
+                });
+                this.on("error", function (file, response) {
+                    var r = response;
+                    console.log("Drop Err:");
+                    console.log(r);
+                });
+            }
+        };
+    </script>
+}
